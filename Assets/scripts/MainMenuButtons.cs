@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UseButtons : MonoBehaviour
 {
-    public UnityEngine.Audio.AudioMixer mixer;
     public Button cheatsPanel;
     public Button settingsPanel;
     public GameObject xButton; 
@@ -17,6 +16,7 @@ public class UseButtons : MonoBehaviour
     public static float savedSFXVol;
     public static bool firstLoad = true;
 
+    public UnityEngine.Audio.AudioMixer mixer;
     public AudioSource audio;
     public bool playSlider = false;
 
