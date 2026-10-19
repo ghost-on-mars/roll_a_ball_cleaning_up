@@ -30,10 +30,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //TRY DOING JUST PLAY FOR THE SLIDER SOUND SO THEY CANT OVERLAP, THAT WAY I DONT NEED TO USE !AUDIO PLAYING
     //plays the sound
     public void PlaySFX(AudioClip clip)
     {
-        // PlayOneShot allows multiple sounds to overlap without cutting each other off
         audioSource.PlayOneShot(clip);
     }
 }

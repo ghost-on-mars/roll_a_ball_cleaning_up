@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UseButtons : MonoBehaviour
 {
-    public UnityEngine.Audio.AudioMixer mixer;
+    //UI
     public Button cheatsPanel;
     public Button settingsPanel;
     public GameObject xButton; 
@@ -13,12 +13,14 @@ public class UseButtons : MonoBehaviour
     public Slider musicSlider;
     public Slider SFXSlider;
 
+    //Changing volume stuff
+    public UnityEngine.Audio.AudioMixer mixer;
+    public AudioSource audio;
     public static float savedMusicVol;
     public static float savedSFXVol;
-    public static bool firstLoad = true;
+    public bool playSliderSFX = false;
 
-    public AudioSource audio;
-    public bool playSlider = false;
+    public static bool firstLoad = true;
 
     void Awake() //DOESNT WORK
     {
@@ -30,10 +32,12 @@ public class UseButtons : MonoBehaviour
     {
         //DontDestroyOnLoad(audio); //hopefully fixes it
 
+        //hides the extra panels
         cheatsPanel.gameObject.SetActive(false);
         settingsPanel.gameObject.SetActive(false);
 
-        if (firstLoad == true) //sets the default numbers
+        //sets the default numbers
+        if (firstLoad == true) 
         {
             savedMusicVol=0;
             savedSFXVol=-3;
@@ -57,7 +61,6 @@ public class UseButtons : MonoBehaviour
     {
         cheatsPanel.gameObject.SetActive(true);
         buttons.gameObject.SetActive(false);
-
         AudioManager.instance.PlaySFX(AudioManager.instance.buttonSound);
     }
     public void CloseCheats()
@@ -68,7 +71,7 @@ public class UseButtons : MonoBehaviour
     }
     public void OpenSettings()
     {
-        playSlider=true;
+        playSliderSFX=true; //sets this to true so the slider sfx can play later
         settingsPanel.gameObject.SetActive(true);
         buttons.gameObject.SetActive(false);
         AudioManager.instance.PlaySFX(AudioManager.instance.buttonSound);
@@ -83,15 +86,13 @@ public class UseButtons : MonoBehaviour
     {
         AudioManager.instance.PlaySFX(AudioManager.instance.buttonSound);
         #if UNITY_EDITOR
-            // Exits Play Mode inside the Unity Editor
+            //exits play mode inside the editor
             UnityEditor.EditorApplication.isPlaying = false;
         #else
             //closes the application
             Application.Quit();
         #endif
     }
-
-    //Is there a better way to do this? like if the sliders could both share this function and give a parameter of "sfxVol" 
     public void ChangeSFXVol(float volume)
     {
         mixer.SetFloat("sfxVol", volume);
@@ -100,15 +101,18 @@ public class UseButtons : MonoBehaviour
         {
             Debug.Log("missing reference; " + gameObject.name);
         }
-        //this stops working after the first time
-        if (!audio.isPlaying && playSlider == true) 
+        //TRY DOING JUST PLAY INSTEAD OF PLAYONESHOT IN THE AUDIO SCRIPT FOR THE SLIDER SOUND SO THEY CANT OVERLAP, THAT WAY I DONT NEED TO USE !AUDIO PLAYING
+
+        //doesnt work after the first time due to the camera being destroyed 
+        //and audio not beingg reassigned to it
+        if (!audio.isPlaying && playSliderSFX == true) 
         {
-            
             AudioManager.instance.PlaySFX(AudioManager.instance.sliderSound);
         }
+
         //both dont work
-        //if (!audio.isPlaying && playSlider == true) 
-        //if (!audioScript.audioSource.isPlaying && playSlider == true) 
+        //if (!audio.isPlaying && playSliderSFX == true) 
+        //if (!audioScript.audioSource.isPlaying && playSliderSFX == true) 
 
 
         //Debug.Log("in change volume" + volume);
@@ -129,8 +133,9 @@ public class UseButtons : MonoBehaviour
         {
             Debug.Log("missing reference; " + gameObject.name);
         }
-        //doesnt work after the first time
-        if (!audio.isPlaying && playSlider == true)
+        //doesnt work after the first time due to the camera being destroyed 
+        //and audio not beingg reassigned to it
+        if (!audio.isPlaying && playSliderSFX == true)
         {
             AudioManager.instance.PlaySFX(AudioManager.instance.sliderSound);
         }
