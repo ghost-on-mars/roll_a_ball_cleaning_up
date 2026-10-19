@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "name": "CommandActions",
+    "maps": [
+        {
+            "name": "commands",
+            "id": "90ec3d08-f716-4557-9436-00f1b59321b1",
+            "actions": [
+                {
+                    "name": "beatLevel",
+                    "type": "Button",
+                    "id": "c2c2c372-43be-4719-84df-c943af602da6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c6c8d68f-bf45-4f35-b805-a2dfd189f5a9",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "beatLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
