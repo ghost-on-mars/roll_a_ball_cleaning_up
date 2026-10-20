@@ -81,12 +81,13 @@ public class player_controller : MonoBehaviour
         keyboardActions.commands.beatLevel.performed += onControl;
     }
 
-    
     private void onControl(InputAction.CallbackContext context)
     {
         //automatically beats the level
         health=10;
         SetHealthText();
+        enemyText.SetActive(false); //hides the exclamation mark so it doesnt overlap with the skull
+        ouchText.SetActive(false);
     }
 
     public void EndScreenPress()
