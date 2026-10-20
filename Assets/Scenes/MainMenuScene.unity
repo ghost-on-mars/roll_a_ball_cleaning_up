@@ -446,7 +446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CHEATS
+  m_text: Cheats
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1870,7 +1870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2181,15 +2181,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e1cec216d2de14794f802cc8a0b0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayButton
-  mixer: {fileID: 24100000, guid: fa6fd8b57a0cfd54aa7f489968527235, type: 2}
   cheatsPanel: {fileID: 1691963766}
   settingsPanel: {fileID: 1035203534}
   xButton: {fileID: 120797415}
   buttons: {fileID: 748529173}
   musicSlider: {fileID: 877647617}
   SFXSlider: {fileID: 1566309984}
+  mixer: {fileID: 24100000, guid: fa6fd8b57a0cfd54aa7f489968527235, type: 2}
   audio: {fileID: 1196055360}
-  playSlider: 0
+  playSliderSFX: 0
 --- !u!114 &822728342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5217,7 +5217,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SETTINGS
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
