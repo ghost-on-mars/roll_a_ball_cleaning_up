@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class UseButtons : MonoBehaviour
 {
     //UI
@@ -22,16 +21,8 @@ public class UseButtons : MonoBehaviour
 
     public static bool firstLoad = true;
 
-    void Awake() //DOESNT WORK
-    {
-        // Automatically fetches the fresh AudioSource when the scene reloads
-        audio = GetComponent<AudioSource>(); 
-    }
-
     void Start()
     {
-        //DontDestroyOnLoad(audio); //hopefully fixes it
-
         //hides the extra panels
         cheatsPanel.gameObject.SetActive(false);
         settingsPanel.gameObject.SetActive(false);
@@ -95,50 +86,25 @@ public class UseButtons : MonoBehaviour
     }
     public void ChangeSFXVol(float volume)
     {
-        mixer.SetFloat("sfxVol", volume);
-        savedSFXVol = volume;
-        if (audio == null)
+        mixer.SetFloat("sfxVol", volume); 
+        savedSFXVol = volume; //updates the saved volume
+        
+        //plays the sfx. uses AudioManager.PlayOneSFX because that uses Play 
+        //instead of PlayOneShot, ehich stops the sounds from overlapping
+        if (playSliderSFX == true)
         {
-            Debug.Log("missing reference; " + gameObject.name);
-        }
-        //TRY DOING JUST PLAY INSTEAD OF PLAYONESHOT IN THE AUDIO SCRIPT FOR THE SLIDER SOUND SO THEY CANT OVERLAP, THAT WAY I DONT NEED TO USE !AUDIO PLAYING
-
-        //doesnt work after the first time due to the camera being destroyed 
-        //and audio not beingg reassigned to it
-        if (!audio.isPlaying && playSliderSFX == true) 
-        {
-            AudioManager.instance.PlaySFX(AudioManager.instance.sliderSound);
+            AudioManager.instance.PlayOneSFX(AudioManager.instance.sliderSound);
         }
 
-        //both dont work
-        //if (!audio.isPlaying && playSliderSFX == true) 
-        //if (!audioScript.audioSource.isPlaying && playSliderSFX == true) 
-
-
-        //Debug.Log("in change volume" + volume);
-        //AudioManager.instance.PlaySFX(AudioManager.instance.sliderSound);
-        /*if (slider == false)
-        {
-            AudioManager.instance.PlaySFX(AudioManager.instance.buttonSound);
-        }
-        slider = true;*/
-
-        //PlayerPrefs.SetFloat("GameVolume", volume); // Saves settings between sessions
     }
     public void ChangeMusicVol(float volume)
     {
         mixer.SetFloat("musicVol", volume);
         savedMusicVol=volume;
-        if (audio == null)
-        {
-            Debug.Log("missing reference; " + gameObject.name);
-        }
-        //doesnt work after the first time due to the camera being destroyed 
-        //and audio not beingg reassigned to it
-        if (!audio.isPlaying && playSliderSFX == true)
-        {
-            AudioManager.instance.PlaySFX(AudioManager.instance.sliderSound);
-        }
         
+        if (playSliderSFX == true)
+        {
+            AudioManager.instance.PlayOneSFX(AudioManager.instance.sliderSound);
+        }
     }
 }

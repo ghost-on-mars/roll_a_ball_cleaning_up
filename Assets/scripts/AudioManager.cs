@@ -1,3 +1,4 @@
+using System.Security.AccessControl;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -30,10 +31,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    //TRY DOING JUST PLAY FOR THE SLIDER SOUND SO THEY CANT OVERLAP, THAT WAY I DONT NEED TO USE !AUDIO PLAYING
-    //plays the sound
+    //plays the sfx
     public void PlaySFX(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
+    }
+
+    //plays the sfx wihtout overlapping. used for the slider sound
+    public void PlayOneSFX(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }
