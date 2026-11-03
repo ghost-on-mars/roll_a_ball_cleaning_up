@@ -20,6 +20,7 @@ public class UseButtons : MonoBehaviour
     public bool playSliderSFX = false;
 
     public static bool firstLoad = true;
+    public static bool changedMode = false;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class UseButtons : MonoBehaviour
         {
             savedMusicVol=0;
             savedSFXVol=-3;
+            changedMode = false;
         }
         
         //sets the volume to the saved one
@@ -83,6 +85,18 @@ public class UseButtons : MonoBehaviour
             //closes the application
             Application.Quit();
         #endif
+    }
+    public void PressedToggle()
+    {
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonSound);
+        if (changedMode==false)
+        {
+            changedMode=true;
+        }
+        else if (changedMode==true)
+        {
+            changedMode=false;
+        }
     }
     public void ChangeSFXVol(float volume)
     {

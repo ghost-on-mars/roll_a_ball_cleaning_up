@@ -7,8 +7,18 @@ public class EnemyMovement : MonoBehaviour
     public player_controller playerScript;    
     public Transform player;
     private NavMeshAgent navMeshAgent;
+    public GameObject evilHouse;
+    public GameObject ogBox;
     void Start()
     {
+        evilHouse.SetActive(false);
+        ogBox.SetActive(true); 
+
+        if (UseButtons.changedMode == true)
+        {
+           evilHouse.SetActive(true);
+           ogBox.SetActive(false);
+        }
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
     IEnumerator killSelf(float delayInSeconds)
