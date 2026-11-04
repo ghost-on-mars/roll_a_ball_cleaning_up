@@ -20,7 +20,7 @@ public class UseButtons : MonoBehaviour
     public bool playSliderSFX = false;
 
     public static bool firstLoad = true;
-    public static bool changedMode = false;
+    public static bool changedMode;
 
     void Start()
     {

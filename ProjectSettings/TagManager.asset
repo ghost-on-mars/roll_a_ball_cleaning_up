@@ -8,6 +8,7 @@ TagManager:
   - evilpickup
   - enemy
   - raisedcube
+  - evilpickup2
   layers:
   - Default
   - TransparentFX

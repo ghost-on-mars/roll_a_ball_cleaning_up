@@ -43,6 +43,8 @@ public class player_controller : MonoBehaviour
     //other game objects
     public GameObject trapdoor;
     public GameObject enemy; 
+    public GameObject evilPickup1;
+    public GameObject evilPickup2;
     
     //timer setup
     float startTime;
@@ -72,9 +74,18 @@ public class player_controller : MonoBehaviour
         loseTextObject.SetActive(false);
         enemyText.SetActive(false);
         skullEmoji.SetActive(false);
+        evilPickup1.SetActive(true);
+        evilPickup2.SetActive(false);
         endScreenButton.gameObject.SetActive(false);
         keepPlayingButton.gameObject.SetActive(false);
         
+        //if the bonus game mode was turned on
+        if (UseButtons.changedMode == true)
+        {
+            evilPickup1.SetActive(false);
+            evilPickup2.SetActive(true);
+        }
+
         //commands
         keyboardActions = new CommandActions();
         keyboardActions.Enable();
