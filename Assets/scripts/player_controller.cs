@@ -27,6 +27,7 @@ public class player_controller : MonoBehaviour
     public float maxHealth = 10;
 
     //player setup
+    private MeshRenderer meshRenderer;
     public float speed = 10; 
     private Rigidbody rb; 
     private float movementX;
@@ -82,6 +83,9 @@ public class player_controller : MonoBehaviour
         //if the bonus game mode was turned on
         if (UseButtons.changedMode == true)
         {
+            meshRenderer = GetComponent<MeshRenderer>();
+            // Hide the mesh
+            meshRenderer.enabled = false;
             evilPickup1.SetActive(false);
             evilPickup2.SetActive(true);
         }
