@@ -30,8 +30,8 @@ public class player_controller : MonoBehaviour
     private MeshRenderer meshRenderer;
     public float speed = 10; 
     private Rigidbody rb; 
-    private float movementX;
-    private float movementY;
+    public float movementX;
+    public float movementY;
     public float remainingFood = 8;
     public int health;
     public static int foodEaten = 0;
