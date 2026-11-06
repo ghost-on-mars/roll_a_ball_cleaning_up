@@ -7,27 +7,40 @@ public class Gunch : MonoBehaviour
     public player_controller playerScript;    
     public Transform player;
 
-        void Update()
+    void Update()
     {
         //if player is active and not dead
         if (player != null && playerScript.health > 0) 
         {
             Vector3 targetPosition = player.position;
-            Vector3 lookatPos = new Vector3(targetPosition.x+playerScript.movementX, targetPosition.y, targetPosition.z+playerScript.movementY);
-            //lookAtPos = new Vector3 (targetPosition.x-0.1f,targetPosition.x,targetPosition.z-0.1f);
-            //transform.position = new Vector3(targetPosition.x-0.1f,targetPosition.y,targetPosition.z-0.1f);
+            Vector3 lookAtPos = new Vector3 (targetPosition.x+playerScript.movementX,0, targetPosition.z+playerScript.movementY );
             
-            //z is nack and forth x is left and right
+            //Debug.Log(playerScript.movementX + " x. "+ playerScript.movementY +" y.");
+            
+            
+            if (playerScript.movementX !=0 || playerScript.movementY !=0) //only if a key is being pressed
+            {
+                
+                //makes you face the right direction
+                transform.LookAt(targetPosition);
+                float yAngle = transform.eulerAngles.y; //gets the current angle
+                    
+                //keeps the x and z at 0 and only changes the y angle
+                transform.localEulerAngles = new Vector3(0, yAngle, 0); 
+
+            }
             transform.position = targetPosition;
-
-            Debug.Log((targetPosition.x+playerScript.movementX) + " x. " + playerScript.movementY + " y");
-            transform.LookAt(lookatPos);//playerScript.movementX,0, playerScript.movementY );
-            Vector3 currentAngles = player.localEulerAngles;
-            currentAngles.x=0f;
-            currentAngles.z=0f;
-
-            // Force the Z axis to stay at 0 
-            //transform.localEulerAngles = new Vector3(0, currentAngles.y,0);
         }
+    }
+    void LateUpdate()
+    {
+        if (playerScript.movementX ==0 & playerScript.movementY ==0) //only if a key is being pressed
+            {
+                
+
+                // transform.LookAt(lookAtPos);
+                
+                
+            }
     }
 }

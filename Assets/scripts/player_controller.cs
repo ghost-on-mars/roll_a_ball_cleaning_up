@@ -30,6 +30,10 @@ public class player_controller : MonoBehaviour
     private MeshRenderer meshRenderer;
     public float speed = 10; 
     private Rigidbody rb; 
+    private Collider collider2;
+    private Collider bodyCollider;
+    //public SphereCollider mainCollider;
+    //public SphereCollider smallCollider;    
     public float movementX;
     public float movementY;
     public float remainingFood = 8;
@@ -65,8 +69,14 @@ public class player_controller : MonoBehaviour
         //starts the timer
         startTime = Time.time;
 
-        //gets the data from rigid body
+        //rigid body
         rb = GetComponent<Rigidbody>(); 
+        rb.linearDamping = 0f; 
+        rb.angularDamping = 0.05f; 
+        BoxCollider collider2 = GetComponent<BoxCollider>();
+        CapsuleCollider bodyCollider = GetComponent<CapsuleCollider>();
+        SphereCollider sphere = GetComponent<SphereCollider>();
+        sphere.radius=0.5f;
 
         //hiding objects
         SetHealthText();
@@ -79,6 +89,8 @@ public class player_controller : MonoBehaviour
         evilPickup2.SetActive(false);
         endScreenButton.gameObject.SetActive(false);
         keepPlayingButton.gameObject.SetActive(false);
+        collider2.enabled=false;
+        bodyCollider.enabled=false;
         
         //if the bonus game mode was turned on
         if (UseButtons.changedMode == true)
@@ -86,8 +98,23 @@ public class player_controller : MonoBehaviour
             meshRenderer = GetComponent<MeshRenderer>();
             // Hide the mesh
             meshRenderer.enabled = false;
+            sphere.enabled=true;
+            
+            if (sphere != null)
+            {
+                Debug.Log("shrunk it");
+                //sphere.radius = 0.15f; //shrinks it so you can fit in gaps better
+                //sphere.center = new Vector3(0f, -0.33f, 0.07f);
+            }
+            //collider2.enabled=true; //enables the second collider 
+            //bodyCollider.enabled=true;  
             evilPickup1.SetActive(false);
             evilPickup2.SetActive(true);
+            //this is so you slide less if youre not the ball
+            speed=30;
+            rb.linearDamping = 3f; 
+            rb.angularDamping = 3f;     
+
         }
 
         //commands
@@ -207,6 +234,12 @@ public class player_controller : MonoBehaviour
         //moves you
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
         rb.AddForce(movement*speed);
+
+        /*if (noInputActive) 
+        {
+            // Instantly drops horizontal sliding to zero, keeping gravity intact
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0); 
+        }*/
         
         //keeps track of your y position
         Vector3 posVector = transform.position;
@@ -217,12 +250,25 @@ public class player_controller : MonoBehaviour
         //when you first fall plays the sound
         if (currentY <= 0.3f && currentY >= -0.3f && !fallen)
         {
+            //makes you fall better if youre not the ball
+            if (UseButtons.changedMode == true)
+            { 
+                rb.linearDamping = 0f; 
+                rb.angularDamping = 0.05f; 
+            }
+
             AudioManager.instance.PlaySFX(AudioManager.instance.fallSound);
             fallen = true;
         }
         //once you land
         if (currentY == -19.5f && currentLevel ==1 ) 
         {
+            if (UseButtons.changedMode == true)
+            { 
+                //sets the damping back once you land
+                rb.linearDamping = 3f; 
+                rb.angularDamping = 3f; 
+            }
             currentLevel = 2;
             remainingFood = 10; //resets remaining food
             if (health >= 5)

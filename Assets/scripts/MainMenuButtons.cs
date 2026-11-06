@@ -33,7 +33,7 @@ public class UseButtons : MonoBehaviour
         {
             savedMusicVol=0;
             savedSFXVol=-3;
-            changedMode = false;
+            changedMode = true; //CHANGE THIS LATERRRRRRRRRRRRR
         }
         
         //sets the volume to the saved one
