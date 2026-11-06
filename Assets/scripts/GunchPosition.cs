@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
-public class Gunch : MonoBehaviour
+public class GunchPosition : MonoBehaviour
 {
     public player_controller playerScript;    
     public Transform player;

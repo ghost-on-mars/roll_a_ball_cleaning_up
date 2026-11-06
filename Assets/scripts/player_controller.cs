@@ -13,6 +13,9 @@ public class player_controller : MonoBehaviour
     //controls
     private CommandActions keyboardActions;
 
+    public Transform gunchBody;
+
+
     //UI
     public TextMeshProUGUI healthText;
     public GameObject ouchText;
@@ -31,9 +34,8 @@ public class player_controller : MonoBehaviour
     public float speed = 10; 
     private Rigidbody rb; 
     private Collider collider2;
-    private Collider bodyCollider;
-    //public SphereCollider mainCollider;
-    //public SphereCollider smallCollider;    
+    public BoxCollider headCollider;
+    public BoxCollider bodyCollider;    
     public float movementX;
     public float movementY;
     public float remainingFood = 8;
@@ -73,8 +75,8 @@ public class player_controller : MonoBehaviour
         rb = GetComponent<Rigidbody>(); 
         rb.linearDamping = 0f; 
         rb.angularDamping = 0.05f; 
-        BoxCollider collider2 = GetComponent<BoxCollider>();
-        CapsuleCollider bodyCollider = GetComponent<CapsuleCollider>();
+        //BoxCollider collider2 = GetComponent<BoxCollider>();
+        //CapsuleCollider bodyCollider = GetComponent<CapsuleCollider>();
         SphereCollider sphere = GetComponent<SphereCollider>();
         sphere.radius=0.5f;
 
@@ -89,12 +91,13 @@ public class player_controller : MonoBehaviour
         evilPickup2.SetActive(false);
         endScreenButton.gameObject.SetActive(false);
         keepPlayingButton.gameObject.SetActive(false);
-        collider2.enabled=false;
-        bodyCollider.enabled=false;
+        //collider2.enabled=false;
+        //bodyCollider.enabled=false;
         
         //if the bonus game mode was turned on
         if (UseButtons.changedMode == true)
         {
+            Debug.Log("hi");
             meshRenderer = GetComponent<MeshRenderer>();
             // Hide the mesh
             meshRenderer.enabled = false;
@@ -102,7 +105,7 @@ public class player_controller : MonoBehaviour
             
             if (sphere != null)
             {
-                Debug.Log("shrunk it");
+                //Debug.Log("shrunk it");
                 //sphere.radius = 0.15f; //shrinks it so you can fit in gaps better
                 //sphere.center = new Vector3(0f, -0.33f, 0.07f);
             }
@@ -231,6 +234,9 @@ public class player_controller : MonoBehaviour
     }
     void FixedUpdate()
     {   
+        bodyCollider.transform.rotation = gunchBody.transform.rotation;
+        headCollider.transform.rotation = gunchBody.transform.rotation;
+        Debug.Log(bodyCollider.transform.rotation);
         //moves you
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
         rb.AddForce(movement*speed);

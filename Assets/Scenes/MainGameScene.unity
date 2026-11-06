@@ -1903,6 +1903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 575d59f0ede214c43b693536e35963e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gunchBody: {fileID: 3182669111375355332}
   healthText: {fileID: 914783573}
   ouchText: {fileID: 1300402671}
   winTextObject: {fileID: 253510802}
@@ -1915,6 +1916,8 @@ MonoBehaviour:
   healthSlider: {fileID: 244507580}
   maxHealth: 10
   speed: 30
+  headCollider: {fileID: 615834719}
+  bodyCollider: {fileID: 1316404001}
   movementX: 0
   movementY: 0
   remainingFood: 0
@@ -3824,12 +3827,12 @@ GameObject:
   - component: {fileID: 615834718}
   - component: {fileID: 615834719}
   m_Layer: 3
-  m_Name: main collider
+  m_Name: head collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &615834718
 Transform:
   m_ObjectHideFlags: 0
@@ -3845,8 +3848,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 328667447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &615834719
-SphereCollider:
+--- !u!65 &615834719
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3855,17 +3858,17 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 119
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0.96, z: -0.05}
 --- !u!1 &617284692
 GameObject:
   m_ObjectHideFlags: 0
@@ -6812,12 +6815,12 @@ GameObject:
   - component: {fileID: 1316404000}
   - component: {fileID: 1316404001}
   m_Layer: 3
-  m_Name: box collider
+  m_Name: body collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1316404000
 Transform:
   m_ObjectHideFlags: 0
@@ -6843,17 +6846,17 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 119
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.3, z: 0.4}
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Size: {x: 0.65, y: 0.6, z: 0.2}
+  m_Center: {x: 0, y: 0.13, z: 0}
 --- !u!1001 &1330980183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10131,6 +10134,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3182669111375355338}
   m_SourcePrefab: {fileID: 100100000, guid: 3a8f46749e9f29c48ae6dece8684a053, type: 3}
+--- !u!4 &3182669111375355332 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9200878216807995256, guid: 3a8f46749e9f29c48ae6dece8684a053, type: 3}
+  m_PrefabInstance: {fileID: 3182669111375355331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3182669111375355337
 MonoBehaviour:
   m_ObjectHideFlags: 0
