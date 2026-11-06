@@ -106,8 +106,8 @@ public class player_controller : MonoBehaviour
                 //sphere.radius = 0.15f; //shrinks it so you can fit in gaps better
                 //sphere.center = new Vector3(0f, -0.33f, 0.07f);
             }
-            //collider2.enabled=true; //enables the second collider 
-            //bodyCollider.enabled=true;  
+            collider2.enabled=true; //enables the second collider 
+            bodyCollider.enabled=true;  
             evilPickup1.SetActive(false);
             evilPickup2.SetActive(true);
             //this is so you slide less if youre not the ball
@@ -234,6 +234,8 @@ public class player_controller : MonoBehaviour
         //moves you
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
         rb.AddForce(movement*speed);
+
+        //collider2.      
 
         /*if (noInputActive) 
         {

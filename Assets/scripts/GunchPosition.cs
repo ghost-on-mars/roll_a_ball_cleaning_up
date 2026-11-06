@@ -17,7 +17,7 @@ public class Gunch : MonoBehaviour
             
             //Debug.Log(playerScript.movementX + " x. "+ playerScript.movementY +" y.");
             
-            
+            //the problem is that the collider doesnt turn with gunch, it turns with the sphere
             if (playerScript.movementX !=0 || playerScript.movementY !=0) //only if a key is being pressed
             {
                 

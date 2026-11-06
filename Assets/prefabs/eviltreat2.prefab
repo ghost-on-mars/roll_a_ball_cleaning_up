@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::rotater
   pos: 2
   currentTime: 0
+  randomDelay: 0
 --- !u!54 &7739494255659479159
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6670546764689348344}
   serializedVersion: 5
-  m_Mass: 100
+  m_Mass: 1000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: -20, z: 0}
