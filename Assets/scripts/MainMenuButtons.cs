@@ -88,7 +88,7 @@ public class UseButtons : MonoBehaviour
     }
     public void PressedToggle(float mode)
     {
-        //Debug.Log(mode + "mode");
+        Debug.Log(mode + "mode");
         AudioManager.instance.PlaySFX(AudioManager.instance.buttonSound);
         if (mode==0)
         {

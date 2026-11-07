@@ -1881,9 +1881,6 @@ GameObject:
   - component: {fileID: 328667443}
   - component: {fileID: 328667442}
   - component: {fileID: 328667441}
-  - component: {fileID: 328667448}
-  - component: {fileID: 328667449}
-  - component: {fileID: 328667450}
   m_Layer: 3
   m_Name: player
   m_TagString: Player
@@ -1903,9 +1900,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 575d59f0ede214c43b693536e35963e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  gunchBody: {fileID: 3182669111375355332}
+  gunchTransform: {fileID: 3182669111375355332}
+  gunchBody: {fileID: 1711998603}
   healthText: {fileID: 914783573}
   ouchText: {fileID: 1300402671}
+  ouchTransform: {fileID: 1300402672}
   winTextObject: {fileID: 253510802}
   loseTextObject: {fileID: 944049257}
   enemytextbox: {fileID: 1398738713}
@@ -1994,10 +1993,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -2080,71 +2079,6 @@ Transform:
   - {fileID: 1316404000}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &328667448
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328667440}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 119
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.5}
-  m_Center: {x: 0, y: 0.96, z: -0.05}
---- !u!65 &328667449
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328667440}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 119
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 0.65, y: 0.6, z: 0.2}
-  m_Center: {x: 0, y: 0.13, z: 0}
---- !u!136 &328667450
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328667440}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 119
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 0.6
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!1001 &339529397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10130,9 +10064,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8429548083478007234, guid: 3a8f46749e9f29c48ae6dece8684a053, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3182669111375355337}
-    - targetCorrespondingSourceObject: {fileID: 8429548083478007234, guid: 3a8f46749e9f29c48ae6dece8684a053, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3182669111375355338}
   m_SourcePrefab: {fileID: 100100000, guid: 3a8f46749e9f29c48ae6dece8684a053, type: 3}
 --- !u!4 &3182669111375355332 stripped
 Transform:
@@ -10153,27 +10084,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gunch
   playerScript: {fileID: 328667441}
   player: {fileID: 328667447}
---- !u!65 &3182669111375355338
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711998603}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5, y: 2.5, z: 0.9}
-  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1001 &6889633615819520067
 PrefabInstance:
   m_ObjectHideFlags: 0

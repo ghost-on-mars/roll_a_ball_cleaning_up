@@ -13,12 +13,14 @@ public class player_controller : MonoBehaviour
     //controls
     private CommandActions keyboardActions;
 
-    public Transform gunchBody;
+    public Transform gunchTransform;
+    public GameObject gunchBody;
 
 
     //UI
     public TextMeshProUGUI healthText;
     public GameObject ouchText;
+    public RectTransform ouchTransform;
     public GameObject winTextObject;
     public GameObject loseTextObject;
     [SerializeField] private TextMeshPro enemytextbox; 
@@ -33,7 +35,7 @@ public class player_controller : MonoBehaviour
     private MeshRenderer meshRenderer;
     public float speed = 10; 
     private Rigidbody rb; 
-    private Collider collider2;
+    //private Collider collider2;
     public BoxCollider headCollider;
     public BoxCollider bodyCollider;    
     public float movementX;
@@ -65,9 +67,10 @@ public class player_controller : MonoBehaviour
         damageTaken=0;
         health = 5; 
         remainingFood = 8;
+        speed=10;
         currentLevel = 1;
         died = false;
-
+        ouchTransform.anchoredPosition = new Vector2(0, 50f);//sets pos of ouch
         //starts the timer
         startTime = Time.time;
 
@@ -75,10 +78,14 @@ public class player_controller : MonoBehaviour
         rb = GetComponent<Rigidbody>(); 
         rb.linearDamping = 0f; 
         rb.angularDamping = 0.05f; 
+        meshRenderer = GetComponent<MeshRenderer>();
         //BoxCollider collider2 = GetComponent<BoxCollider>();
         //CapsuleCollider bodyCollider = GetComponent<CapsuleCollider>();
         SphereCollider sphere = GetComponent<SphereCollider>();
         sphere.radius=0.5f;
+
+        LayerMask includedLayers = LayerMask.GetMask("Default", "navmesh");
+        sphere.includeLayers = includedLayers;
 
         //hiding objects
         SetHealthText();
@@ -91,17 +98,25 @@ public class player_controller : MonoBehaviour
         evilPickup2.SetActive(false);
         endScreenButton.gameObject.SetActive(false);
         keepPlayingButton.gameObject.SetActive(false);
+        meshRenderer.enabled = true;
+        gunchBody.SetActive(false);
+        headCollider.enabled=false;  
+        bodyCollider.enabled=false; 
         //collider2.enabled=false;
-        //bodyCollider.enabled=false;
+        //bodyCollider.enabled=flse;
         
         //if the bonus game mode was turned on
         if (UseButtons.changedMode == true)
         {
             Debug.Log("hi");
-            meshRenderer = GetComponent<MeshRenderer>();
+            ouchTransform.anchoredPosition = new Vector2(0, 80f); //moves ouch text higher
+
             // Hide the mesh
             meshRenderer.enabled = false;
+            gunchBody.SetActive(true);
             sphere.enabled=true;
+            includedLayers = LayerMask.GetMask( "navmesh"); //only includes the floor
+            sphere.includeLayers = includedLayers;
             
             if (sphere != null)
             {
@@ -109,12 +124,13 @@ public class player_controller : MonoBehaviour
                 //sphere.radius = 0.15f; //shrinks it so you can fit in gaps better
                 //sphere.center = new Vector3(0f, -0.33f, 0.07f);
             }
-            collider2.enabled=true; //enables the second collider 
+            //collider2.enabled=true; //enables the second collider 
+            headCollider.enabled=true;  
             bodyCollider.enabled=true;  
             evilPickup1.SetActive(false);
             evilPickup2.SetActive(true);
             //this is so you slide less if youre not the ball
-            speed=30;
+            speed=40;
             rb.linearDamping = 3f; 
             rb.angularDamping = 3f;     
 
@@ -159,10 +175,12 @@ public class player_controller : MonoBehaviour
         SetHealthText();
         healthSlider.value = health;
         loseTextObject.gameObject.SetActive(true);
+        winTextObject.gameObject.SetActive(false);
 
         AudioManager.instance.PlaySFX(AudioManager.instance.dieSound);
     
         GetComponent<MeshRenderer>().enabled = false; //just hides it
+        gunchBody.SetActive(false);
         rb.isKinematic = true; //stops it from moving
         
         //waits 2 seconds and then goes to the end screen
@@ -210,6 +228,8 @@ public class player_controller : MonoBehaviour
         if (health == 10 || remainingFood == 0) //if you ahve full health or got all the food
         {
             winTextObject.SetActive(true);
+            loseTextObject.SetActive(false);
+
             AudioManager.instance.PlaySFX(AudioManager.instance.winSound);
 
             if (currentLevel == 1) //if you're on the first level
@@ -234,12 +254,23 @@ public class player_controller : MonoBehaviour
     }
     void FixedUpdate()
     {   
-        bodyCollider.transform.rotation = gunchBody.transform.rotation;
-        headCollider.transform.rotation = gunchBody.transform.rotation;
-        Debug.Log(bodyCollider.transform.rotation);
+        bodyCollider.transform.rotation = gunchTransform.transform.rotation;
+        headCollider.transform.rotation = gunchTransform.transform.rotation;
+
+        Debug.Log(bodyCollider.transform.rotation + " body angle. "+ gunchTransform.transform.rotation);
         //moves you
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
         rb.AddForce(movement*speed);
+
+        //fully gets rid of sliding
+        /*if (movementX ==0 & movementY==0)
+        {
+            rb.isKinematic = true;
+        }
+        else
+        {
+            rb.isKinematic = false;
+        }*/
 
         //collider2.      
 
@@ -269,7 +300,7 @@ public class player_controller : MonoBehaviour
             fallen = true;
         }
         //once you land
-        if (currentY == -19.5f && currentLevel ==1 ) 
+        if (currentY <= -19.5f && currentLevel ==1 ) 
         {
             if (UseButtons.changedMode == true)
             { 
