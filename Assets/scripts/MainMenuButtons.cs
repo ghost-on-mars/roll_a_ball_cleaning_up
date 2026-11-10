@@ -11,6 +11,7 @@ public class UseButtons : MonoBehaviour
     public GameObject buttons;
     public Slider musicSlider;
     public Slider SFXSlider;
+    public Slider modeSlider;
 
     //Changing volume stuff
     public UnityEngine.Audio.AudioMixer mixer;
@@ -35,7 +36,15 @@ public class UseButtons : MonoBehaviour
             savedSFXVol=-3;
             changedMode = true; //CHANGE THIS LATERRRRRRRRRRRRR
         }
-        
+        if (modeSlider.value==0)
+        {
+            changedMode= false;
+        }
+        if (modeSlider.value==1)
+        {
+            changedMode= true;
+        }
+
         //sets the volume to the saved one
         mixer.SetFloat("musicVol", savedMusicVol);
         mixer.SetFloat("sfxVol", savedSFXVol);

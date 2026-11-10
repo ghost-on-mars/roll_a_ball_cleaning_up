@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Linq.Expressions;
 using UnityEngine.Rendering;
+using UnityEditor.Rendering.BuiltIn.ShaderGraph;
 
 public class player_controller : MonoBehaviour
 {
@@ -40,6 +41,10 @@ public class player_controller : MonoBehaviour
     public BoxCollider bodyCollider;    
     public float movementX;
     public float movementY;
+    private float startingX;
+    private float startingY;
+    public Vector3 lockAngle;
+    public bool thing = false;
     public float remainingFood = 8;
     public int health;
     public static int foodEaten = 0;
@@ -108,7 +113,6 @@ public class player_controller : MonoBehaviour
         //if the bonus game mode was turned on
         if (UseButtons.changedMode == true)
         {
-            Debug.Log("hi");
             ouchTransform.anchoredPosition = new Vector2(0, 80f); //moves ouch text higher
 
             // Hide the mesh
@@ -176,6 +180,8 @@ public class player_controller : MonoBehaviour
         healthSlider.value = health;
         loseTextObject.gameObject.SetActive(true);
         winTextObject.gameObject.SetActive(false);
+        endScreenButton.gameObject.SetActive(false);
+        keepPlayingButton.gameObject.SetActive(false);
 
         AudioManager.instance.PlaySFX(AudioManager.instance.dieSound);
     
@@ -221,6 +227,42 @@ public class player_controller : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
+        startingX = movementX;
+        startingY = movementY;
+        
+        if (thing ==true)
+        {
+            //lockAngle = rb.rotation.eulerAngles; 
+            //Debug.Log(movementX + " x. "+ movementY + " y. " + rb.rotation.eulerAngles + " angel?");
+            
+            
+            //bing=true
+            //IN OTHER SCRIPT DO IF BING = true INSTEAD OF THIGN
+            
+            
+            if (movementX==1)//facing rigth
+            {
+                lockAngle = new Vector3(0, 90, 0); 
+            }
+            if (movementX==-1)//facing left
+            {
+                lockAngle = new Vector3(0, 270, 0); 
+            }
+            if (movementY==1)//facing left
+            {
+                lockAngle = new Vector3(0, 0, 0); 
+            }
+            if (movementY==-1)//facing right
+            { 
+                lockAngle = new Vector3(0, 180, 0); 
+            }
+        }
+        else
+        {
+            
+            //bing =false = rb.rotation.eulerAngles; 
+        }
+
     }
     void SetHealthText() 
     {
@@ -257,7 +299,7 @@ public class player_controller : MonoBehaviour
         bodyCollider.transform.rotation = gunchTransform.transform.rotation;
         headCollider.transform.rotation = gunchTransform.transform.rotation;
 
-        Debug.Log(bodyCollider.transform.rotation + " body angle. "+ gunchTransform.transform.rotation);
+        //Debug.Log(bodyCollider.transform.rotation + " body angle. "+ gunchTransform.transform.rotation);
         //moves you
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
         rb.AddForce(movement*speed);
@@ -368,10 +410,36 @@ public class player_controller : MonoBehaviour
     //when you hit the enemy
     private void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log("hit a wall");
+        //if (collision.gameObject.CompareTag("evilpickup2")||collision.gameObject.CompareTag("obstacles") )
+        //{
+        if (movementX == startingX || movementY == startingY)
+        {
+            //Debug.Log("hit a wall"); 
+        
+            rb.constraints = RigidbodyConstraints.FreezeRotation; // Freezes ALL rotation axes
+            thing=true;
+            //rb.rotation = Quaternion.Euler(lockAngle); //sets your rotation the hwere you werer when you presed a key
+        }
+        //}
+        else
+        {
+            //THSI IS ALWAYS TRUE CHANEG TAHT BRUH
+            Debug.Log("thing is false");
+            thing=false;
+        }
+
+        //rb.linearVelocity = Vector3.zero;
+
         if (collision.gameObject.CompareTag("enemy") && died==false)
         {
             damageTaken = damageTaken + 10; 
             Die();            
         }
+    
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        thing=false;    
     }
 }

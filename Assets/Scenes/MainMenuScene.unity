@@ -2000,6 +2000,7 @@ MonoBehaviour:
   buttons: {fileID: 748529173}
   musicSlider: {fileID: 877647617}
   SFXSlider: {fileID: 1566309984}
+  modeSlider: {fileID: 925860837}
   mixer: {fileID: 24100000, guid: fa6fd8b57a0cfd54aa7f489968527235, type: 2}
   audio: {fileID: 1196055360}
   playSliderSFX: 0

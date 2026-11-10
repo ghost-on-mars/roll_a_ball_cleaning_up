@@ -9,6 +9,7 @@ TagManager:
   - enemy
   - raisedcube
   - evilpickup2
+  - obstacles
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Water
   - UI
   - navmesh
-  - 
+  - evil
   - 
   - 
   - 

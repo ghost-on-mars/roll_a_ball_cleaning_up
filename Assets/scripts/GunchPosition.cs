@@ -38,6 +38,31 @@ public class GunchPosition : MonoBehaviour
             
             transform.position = targetPosition;
             //targetPosition.position.y=0;
+            if (playerScript.thing == true)
+            {
+                transform.localEulerAngles = playerScript.lockAngle;
+                Debug.Log( playerScript.movementX + " x. "+ playerScript.movementY + " y. " + transform.rotation.eulerAngles + " angel?");
+            }
+            /*if (playerScript.thing == true)
+            {
+                if (playerScript.movementX==1)//facing left
+                {
+                    transform.localEulerAngles = new Vector3(0, 90, 0); 
+                }
+                if (playerScript.movementX==-1)//facing right
+                {
+                    transform.localEulerAngles = new Vector3(0, -90, 0); 
+                }
+                if (playerScript.movementY==1)//facing left
+                {
+                    transform.localEulerAngles = new Vector3(0, 180, 0); 
+                }
+                if (playerScript.movementY==-1)//facing right
+                { 
+                    transform.localEulerAngles = new Vector3(0, -180, 0); 
+                }
+            }*/
+            
         }
     }
     void LateUpdate()
