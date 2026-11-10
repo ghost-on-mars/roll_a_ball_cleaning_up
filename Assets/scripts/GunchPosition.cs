@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEditor.Rendering.BuiltIn.ShaderGraph;
 
 public class GunchPosition : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GunchPosition : MonoBehaviour
     private float startingX;
     private float startingY;
     private Vector3 targetPosition;
+    private bool thing2;
 
     void Update()
     {
@@ -25,12 +27,22 @@ public class GunchPosition : MonoBehaviour
             {
                 
                 //makes you face the right direction
+                /*if (playerScript.thing ==false)
+                {
+                    transform.LookAt(targetPosition);
+                
+                    float yAngle = transform.eulerAngles.y; //gets the current angle
+                        
+                    //keeps the x and z at 0 and only changes the y angle
+                    transform.localEulerAngles = new Vector3(0, yAngle, 0); 
+                } */  
                 transform.LookAt(targetPosition);
+                
                 float yAngle = transform.eulerAngles.y; //gets the current angle
                     
                 //keeps the x and z at 0 and only changes the y angle
                 transform.localEulerAngles = new Vector3(0, yAngle, 0); 
-
+            
             }
             //Debug.Log(playerScript.movementX + " x. "+ playerScript.movementY +" y.");
             
@@ -40,8 +52,15 @@ public class GunchPosition : MonoBehaviour
             //targetPosition.position.y=0;
             if (playerScript.thing == true)
             {
+                /*thing2=true;
+                if (thing2==true)
+                {
+                    transform.localEulerAngles = playerScript.lockAngle;
+                    thing2=false;
+                }*/
                 transform.localEulerAngles = playerScript.lockAngle;
-                Debug.Log( playerScript.movementX + " x. "+ playerScript.movementY + " y. " + transform.rotation.eulerAngles + " angel?");
+                
+                Debug.Log("BLEHHHHSHDJH "+ playerScript.movementX + " x. "+ playerScript.movementY + " y. " + transform.rotation.eulerAngles + " angel?");
             }
             /*if (playerScript.thing == true)
             {

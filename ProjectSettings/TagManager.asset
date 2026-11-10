@@ -10,6 +10,7 @@ TagManager:
   - raisedcube
   - evilpickup2
   - obstacles
+  - floor
   layers:
   - Default
   - TransparentFX

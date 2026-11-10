@@ -83,11 +83,13 @@ public class player_controller : MonoBehaviour
         rb = GetComponent<Rigidbody>(); 
         rb.linearDamping = 0f; 
         rb.angularDamping = 0.05f; 
+        rb.rotation = Quaternion.Euler(0, 0, 0);
         meshRenderer = GetComponent<MeshRenderer>();
         //BoxCollider collider2 = GetComponent<BoxCollider>();
         //CapsuleCollider bodyCollider = GetComponent<CapsuleCollider>();
         SphereCollider sphere = GetComponent<SphereCollider>();
         sphere.radius=0.5f;
+        
 
         LayerMask includedLayers = LayerMask.GetMask("Default", "navmesh");
         sphere.includeLayers = includedLayers;
@@ -229,17 +231,12 @@ public class player_controller : MonoBehaviour
         movementY = movementVector.y;
         startingX = movementX;
         startingY = movementY;
+        Debug.Log("yoooooooooo");
         
-        if (thing ==true)
+        if (thing ==true) //if touching a wall  
+        
         {
-            //lockAngle = rb.rotation.eulerAngles; 
-            //Debug.Log(movementX + " x. "+ movementY + " y. " + rb.rotation.eulerAngles + " angel?");
-            
-            
-            //bing=true
-            //IN OTHER SCRIPT DO IF BING = true INSTEAD OF THIGN
-            
-            
+            Debug.Log("yo");
             if (movementX==1)//facing rigth
             {
                 lockAngle = new Vector3(0, 90, 0); 
@@ -252,16 +249,17 @@ public class player_controller : MonoBehaviour
             {
                 lockAngle = new Vector3(0, 0, 0); 
             }
-            if (movementY==-1)//facing right
+            if (movementY==-1 )//facing right
             { 
                 lockAngle = new Vector3(0, 180, 0); 
             }
-        }
-        else
-        {
+            //lockAngle = rb.rotation.eulerAngles; 
             
-            //bing =false = rb.rotation.eulerAngles; 
+            
+            //bing=true
+            //IN OTHER SCRIPT DO IF BING = true INSTEAD OF THIGN  
         }
+       
 
     }
     void SetHealthText() 
@@ -350,6 +348,7 @@ public class player_controller : MonoBehaviour
                 rb.linearDamping = 3f; 
                 rb.angularDamping = 3f; 
             }
+            
             currentLevel = 2;
             remainingFood = 10; //resets remaining food
             if (health >= 5)
@@ -413,21 +412,57 @@ public class player_controller : MonoBehaviour
         //Debug.Log("hit a wall");
         //if (collision.gameObject.CompareTag("evilpickup2")||collision.gameObject.CompareTag("obstacles") )
         //{
-        if (movementX == startingX || movementY == startingY)
-        {
-            //Debug.Log("hit a wall"); 
         
+
+        /*if (movementX == startingX || movementY == startingY)
+        {*/
+        if (collision.gameObject.tag != "floor")
+        {
+            
             rb.constraints = RigidbodyConstraints.FreezeRotation; // Freezes ALL rotation axes
+            //Debug.Log(movementX + " " +startingX + " " + movementY +" "+startingY); 
+            Debug.Log(movementX + " x. "+ movementY + " y. " + rb.rotation.eulerAngles + " angel?");
+            
+            //Debug.Log("hit a wall "+ thing + ". tag was "+ collision.gameObject.tag); 
+            if (movementX==1)//facing rigth
+            {
+                lockAngle = new Vector3(0, 90, 0); 
+            }
+            if (movementX==-1)//facing left
+            {
+                lockAngle = new Vector3(0, 270, 0); 
+            }
+            if (movementY==1)//facing left
+            {
+                lockAngle = new Vector3(0, 0, 0); 
+            }
+            if (movementY==-1)//facing right
+            { 
+                lockAngle = new Vector3(0, 180, 0); 
+            }
+            //rb.rotation = Quaternion.Euler(0, 45, 0);
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            /*if (thing==false)
+            {
+                lockAngle = new Vector3(0, rb.rotation.eulerAngles.y, 0); 
+            }*/
             thing=true;
-            //rb.rotation = Quaternion.Euler(lockAngle); //sets your rotation the hwere you werer when you presed a key
+            //OnMove(movementVector);
+            
         }
-        //}
         else
+        {
+            thing=false;
+        }
+            //rb.rotation = Quaternion.Euler(lockAngle); //sets your rotation the hwere you werer when you presed a key
+        //}
+        
+        /*else
         {
             //THSI IS ALWAYS TRUE CHANEG TAHT BRUH
             Debug.Log("thing is false");
             thing=false;
-        }
+        }*/
 
         //rb.linearVelocity = Vector3.zero;
 

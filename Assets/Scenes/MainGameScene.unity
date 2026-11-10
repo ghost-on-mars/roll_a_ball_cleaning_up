@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4376050}
   m_Layer: 6
   m_Name: thin
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1615,7 +1615,7 @@ GameObject:
   - component: {fileID: 272200487}
   m_Layer: 6
   m_Name: thin2
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1729,7 +1729,7 @@ GameObject:
   - component: {fileID: 319493261}
   m_Layer: 6
   m_Name: ground 2
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4354,7 +4354,7 @@ GameObject:
   - component: {fileID: 711964469}
   m_Layer: 6
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4847,7 +4847,7 @@ GameObject:
   - component: {fileID: 911841451}
   m_Layer: 6
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6390,7 +6390,7 @@ GameObject:
   - component: {fileID: 1236749505}
   m_Layer: 6
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8358,7 +8358,7 @@ GameObject:
   - component: {fileID: 1647664722}
   m_Layer: 6
   m_Name: trapdoor
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
