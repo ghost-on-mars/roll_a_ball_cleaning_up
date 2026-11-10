@@ -75,6 +75,7 @@ public class player_controller : MonoBehaviour
         speed=10;
         currentLevel = 1;
         died = false;
+        thing=false;
         ouchTransform.anchoredPosition = new Vector2(0, 50f);//sets pos of ouch
         //starts the timer
         startTime = Time.time;
@@ -231,33 +232,29 @@ public class player_controller : MonoBehaviour
         movementY = movementVector.y;
         startingX = movementX;
         startingY = movementY;
-        Debug.Log("yoooooooooo");
         
-        if (thing ==true) //if touching a wall  
-        
+        if (UseButtons.changedMode==true)
         {
-            Debug.Log("yo");
-            if (movementX==1)//facing rigth
+            if (thing ==true) //if touching a wall  
             {
-                lockAngle = new Vector3(0, 90, 0); 
+                Debug.Log("yo");
+                if (movementX==1)//facing rigth
+                {
+                    lockAngle = new Vector3(0, 90, 0); 
+                }
+                if (movementX==-1)//facing left
+                {
+                    lockAngle = new Vector3(0, 270, 0); 
+                }
+                if (movementY==1)//facing left
+                {
+                    lockAngle = new Vector3(0, 0, 0); 
+                }
+                if (movementY==-1 )//facing right 1
+                { 
+                    lockAngle = new Vector3(0, 180, 0); 
+                }
             }
-            if (movementX==-1)//facing left
-            {
-                lockAngle = new Vector3(0, 270, 0); 
-            }
-            if (movementY==1)//facing left
-            {
-                lockAngle = new Vector3(0, 0, 0); 
-            }
-            if (movementY==-1 )//facing right
-            { 
-                lockAngle = new Vector3(0, 180, 0); 
-            }
-            //lockAngle = rb.rotation.eulerAngles; 
-            
-            
-            //bing=true
-            //IN OTHER SCRIPT DO IF BING = true INSTEAD OF THIGN  
         }
        
 
@@ -416,56 +413,46 @@ public class player_controller : MonoBehaviour
 
         /*if (movementX == startingX || movementY == startingY)
         {*/
-        if (collision.gameObject.tag != "floor")
+        if (UseButtons.changedMode==true)
         {
-            
-            rb.constraints = RigidbodyConstraints.FreezeRotation; // Freezes ALL rotation axes
-            //Debug.Log(movementX + " " +startingX + " " + movementY +" "+startingY); 
-            Debug.Log(movementX + " x. "+ movementY + " y. " + rb.rotation.eulerAngles + " angel?");
-            
-            //Debug.Log("hit a wall "+ thing + ". tag was "+ collision.gameObject.tag); 
-            if (movementX==1)//facing rigth
+            if (collision.gameObject.tag != "floor")
             {
-                lockAngle = new Vector3(0, 90, 0); 
+                
+                rb.constraints = RigidbodyConstraints.FreezeRotation; // Freezes ALL rotation axes
+                //Debug.Log(movementX + " " +startingX + " " + movementY +" "+startingY); 
+                Debug.Log(movementX + " x. "+ movementY + " y. " + rb.rotation.eulerAngles + " angel?");
+                
+                //Debug.Log("hit a wall "+ thing + ". tag was "+ collision.gameObject.tag); 
+                if (movementX==1)//facing rigth
+                {
+                    lockAngle = new Vector3(0, 90, 0); 
+                }
+                if (movementX==-1)//facing left
+                {
+                    lockAngle = new Vector3(0, 270, 0); 
+                }
+                if (movementY==1)//facing left
+                {
+                    lockAngle = new Vector3(0, 0, 0); 
+                }
+                if (movementY==-1)//facing right
+                { 
+                    lockAngle = new Vector3(0, 180, 0); 
+                }
+                //rb.rotation = Quaternion.Euler(0, 45, 0);
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
+                /*if (thing==false)
+                {
+                    lockAngle = new Vector3(0, rb.rotation.eulerAngles.y, 0); 
+                }*/
+                thing=true; 
             }
-            if (movementX==-1)//facing left
-            {
-                lockAngle = new Vector3(0, 270, 0); 
-            }
-            if (movementY==1)//facing left
-            {
-                lockAngle = new Vector3(0, 0, 0); 
-            }
-            if (movementY==-1)//facing right
-            { 
-                lockAngle = new Vector3(0, 180, 0); 
-            }
-            //rb.rotation = Quaternion.Euler(0, 45, 0);
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            /*if (thing==false)
-            {
-                lockAngle = new Vector3(0, rb.rotation.eulerAngles.y, 0); 
-            }*/
-            thing=true;
-            //OnMove(movementVector);
-            
-        }
-        else
-        {
-            thing=false;
-        }
-            //rb.rotation = Quaternion.Euler(lockAngle); //sets your rotation the hwere you werer when you presed a key
-        //}
-        
-        /*else
-        {
-            //THSI IS ALWAYS TRUE CHANEG TAHT BRUH
-            Debug.Log("thing is false");
-            thing=false;
-        }*/
 
-        //rb.linearVelocity = Vector3.zero;
-
+            else
+            {
+                thing=false;
+            }
+        }
         if (collision.gameObject.CompareTag("enemy") && died==false)
         {
             damageTaken = damageTaken + 10; 
