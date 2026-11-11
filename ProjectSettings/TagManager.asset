@@ -8,15 +8,18 @@ TagManager:
   - evilpickup
   - enemy
   - raisedcube
+  - evilpickup2
+  - obstacles
+  - floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - player
   - Water
   - UI
   - navmesh
-  - 
+  - evil
   - 
   - 
   - 

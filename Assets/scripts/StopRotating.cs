@@ -6,6 +6,13 @@ public class LockRotation : MonoBehaviour
     public Transform targetObject;
     public float yPos;
 
+    void Start()
+    {
+        if (UseButtons.changedMode == true)
+        {   
+            yPos=yPos+0.7f;
+        }
+    } 
     void LateUpdate()
     {
         //stops the text above the enemy's head from rotating with it
