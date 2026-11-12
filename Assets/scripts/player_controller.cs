@@ -125,12 +125,6 @@ public class player_controller : MonoBehaviour
             includedLayers = LayerMask.GetMask( "navmesh"); //only includes the floor
             sphere.includeLayers = includedLayers;
             
-            if (sphere != null)
-            {
-                //Debug.Log("shrunk it");
-                //sphere.radius = 0.15f; //shrinks it so you can fit in gaps better
-                //sphere.center = new Vector3(0f, -0.33f, 0.07f);
-            }
             //collider2.enabled=true; //enables the second collider 
             headCollider.enabled=true;  
             bodyCollider.enabled=true;  
@@ -291,31 +285,17 @@ public class player_controller : MonoBehaviour
     }
     void FixedUpdate()
     {   
-        bodyCollider.transform.rotation = gunchTransform.transform.rotation;
-        headCollider.transform.rotation = gunchTransform.transform.rotation;
-
-        //Debug.Log(bodyCollider.transform.rotation + " body angle. "+ gunchTransform.transform.rotation);
+        if (UseButtons.changedMode==true)
+        {
+            bodyCollider.transform.rotation = gunchTransform.transform.rotation;
+            headCollider.transform.rotation = gunchTransform.transform.rotation;
+        }
+        //Debug.Log(speed +" speed. "+rb.linearDamping+" "+rb.angularDamping);
         //moves you
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
         rb.AddForce(movement*speed);
 
-        //fully gets rid of sliding
-        /*if (movementX ==0 & movementY==0)
-        {
-            rb.isKinematic = true;
-        }
-        else
-        {
-            rb.isKinematic = false;
-        }*/
-
-        //collider2.      
-
-        /*if (noInputActive) 
-        {
-            // Instantly drops horizontal sliding to zero, keeping gravity intact
-            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0); 
-        }*/
+        
         
         //keeps track of your y position
         Vector3 posVector = transform.position;
