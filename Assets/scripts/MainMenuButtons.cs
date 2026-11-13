@@ -35,9 +35,9 @@ public class UseButtons : MonoBehaviour
 
         //sets the default numbers
         if (firstLoad == true) 
-        {
+        { 
             savedMusicVol=0;
-            savedSFXVol=-3;
+            savedSFXVol=-10;
             changedMode = false;
             touchControls = false;
             savedMode=0;
