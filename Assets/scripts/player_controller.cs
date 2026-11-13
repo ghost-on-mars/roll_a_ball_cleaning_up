@@ -21,6 +21,7 @@ public class player_controller : MonoBehaviour
     public RectTransform ouchTransform;
     public GameObject winTextObject;
     public GameObject loseTextObject;
+    public GameObject touchController;
     [SerializeField] private TextMeshPro enemytextbox; 
     public GameObject enemyText;
     public GameObject skullEmoji;
@@ -99,6 +100,7 @@ public class player_controller : MonoBehaviour
         loseTextObject.SetActive(false);
         enemyText.SetActive(false);
         skullEmoji.SetActive(false);
+        touchController.SetActive(false);
         evilPickup1.SetActive(true);
         evilPickup2.SetActive(false);
         endScreenButton.gameObject.SetActive(false);
@@ -109,7 +111,13 @@ public class player_controller : MonoBehaviour
         bodyCollider.enabled=false; 
         //collider2.enabled=false;
         //bodyCollider.enabled=flse;
-        
+
+        //if they enabled the touch controls
+        if (UseButtons.touchControls==true)
+        {
+            touchController.SetActive(true);
+        }
+
         //if the bonus game mode was turned on
         if (UseButtons.changedMode == true)
         {

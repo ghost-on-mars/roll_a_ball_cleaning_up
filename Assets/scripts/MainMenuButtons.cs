@@ -12,16 +12,20 @@ public class UseButtons : MonoBehaviour
     public Slider musicSlider;
     public Slider SFXSlider;
     public Slider modeSlider;
+    public Slider mobileSlider;
 
     //Changing volume stuff
     public UnityEngine.Audio.AudioMixer mixer;
     public AudioSource audio;
     public static float savedMusicVol;
     public static float savedSFXVol;
+    public static float savedMode;
+    public static float savedTouchControls;
     public bool playSliderSFX = false;
 
     public static bool firstLoad = true;
     public static bool changedMode;
+    public static bool touchControls;
 
     void Start()
     {
@@ -34,16 +38,20 @@ public class UseButtons : MonoBehaviour
         {
             savedMusicVol=0;
             savedSFXVol=-3;
-            changedMode = true; //CHANGE THIS LATERRRRRRRRRRRRR
+            changedMode = false;
+            touchControls = false;
+            savedMode=0;
+            savedTouchControls=0;
+            Debug.Log("firstload"+changedMode+" "+savedMode);
         }
-        if (modeSlider.value==0)
+        else
         {
-            changedMode= false;
+            Debug.Log("not first laod");
         }
-        if (modeSlider.value==1)
-        {
-            changedMode= true;
-        }
+       
+        //sets the toggles to the saevd value
+        modeSlider.value=savedMode;
+        mobileSlider.value=savedTouchControls;
 
         //sets the volume to the saved one
         mixer.SetFloat("musicVol", savedMusicVol);
@@ -95,17 +103,33 @@ public class UseButtons : MonoBehaviour
             Application.Quit();
         #endif
     }
-    public void PressedToggle(float mode)
+    public void MobileToggle(float toggle)
+    {
+        AudioManager.instance.PlaySFX(AudioManager.instance.buttonSound);
+        if (toggle==0)
+        {
+            touchControls=false;
+            savedTouchControls=0;
+        }
+        else if (toggle==1)
+        {
+            touchControls=true;
+            savedTouchControls=1;
+        }
+    }
+    public void ModeToggle(float mode)
     {
         Debug.Log(mode + "mode");
         AudioManager.instance.PlaySFX(AudioManager.instance.buttonSound);
         if (mode==0)
         {
             changedMode=false;
+            savedMode=0;
         }
         else if (mode==1)
         {
             changedMode=true;
+            savedMode=1;
         }
     }
     public void ChangeSFXVol(float volume)
