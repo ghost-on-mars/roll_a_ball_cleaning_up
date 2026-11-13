@@ -5,9 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System.Linq.Expressions;
-using UnityEngine.Rendering;
-using UnityEditor.Rendering.BuiltIn.ShaderGraph;
 
 public class player_controller : MonoBehaviour
 {

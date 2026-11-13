@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
-using System.Collections;
-using UnityEditor.Rendering.BuiltIn.ShaderGraph;
 
 public class GunchPosition : MonoBehaviour
 {
