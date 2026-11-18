@@ -95,6 +95,7 @@ public class player_controller : MonoBehaviour
 
         //hiding objects
         SetHealthText();
+        
         ouchText.SetActive(false);
         winTextObject.SetActive(false);
         loseTextObject.SetActive(false);

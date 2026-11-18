@@ -5177,7 +5177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &944049258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6475,6 +6475,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 836604662}
     m_Modifications:
+    - target: {fileID: 5823676515668151226, guid: a86471e4487845841bee08854dae1ca4, type: 3}
+      propertyPath: rotationSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6330190103037660226, guid: 9529d765002b2ec4aa4758e6dd528f5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -6518,10 +6522,6 @@ PrefabInstance:
     - target: {fileID: 6670546764689348344, guid: 9529d765002b2ec4aa4758e6dd528f5c, type: 3}
       propertyPath: m_Name
       value: eviltreat2 (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823676515668151226, guid: a86471e4487845841bee08854dae1ca4, type: 3}
-      propertyPath: rotationSpeed
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

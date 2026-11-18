@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "roll_a_ball_cleaning_up.slnx"
+    "dotnet.defaultSolution": "roll_a_ball_arcade.slnx"
 }
